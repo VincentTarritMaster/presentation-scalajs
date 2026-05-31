@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Démo is-thirteen</title>
+    <style>
+      html, body { margin: 0; padding: 20px; background: #ffffff; }
+      body { font-family: "Segoe UI", Roboto, sans-serif; color: #172033; }
+      .container { max-width: 100%; margin: 0; padding: 20px; background: #ffffff; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="is13-app"></div>
+    </div>
+
+    <script type="module">
+      import isThirteen from "is-thirteen";
+      window.isThirteen = isThirteen;
+
+      const scalaScript = document.createElement("script");
+      scalaScript.src = "/target/scala-3.3.3/scalajs-reveal-demo-fastopt/main.js";
+      document.body.appendChild(scalaScript);
+    </script>
+  </body>
+</html>

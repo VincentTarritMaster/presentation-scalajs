@@ -1,26 +1,14 @@
 # Une forêt sans arbres.
 
-Note:
-Script oral (10 sec):
-Première image absurde pour capter l'attention.
 ---
 # Un château de sable sans sable.
 
-Note:
-Script oral (10 sec):
-On renforce l'idée d'impossible.
 ---
 # Du JavaScript sans JavaScript.
 
-Note:
-Script oral (10 sec):
-Transition vers le sujet technique.
 ---
 # Scala.js.
 
-Note:
-Script oral (15 sec):
-Révélation: ce qui semblait absurde devient concret grâce à Scala.js.
 ---
 ## C'est quoi Scala.js ?
 
@@ -30,9 +18,6 @@ Révélation: ce qui semblait absurde devient concret grâce à Scala.js.
   <li class="fragment">Idée clé: conserver le <strong>typage</strong> et l'écosystème Scala côté front.</li>
 </ul>
 
-Note:
-Script oral (1 min 15):
-Scala.js prend du code Scala standard et produit du JavaScript exécutable. Ce n'est pas une réécriture manuelle, c'est un pipeline de compilation complet.
 ---
 ## Pourquoi l'utiliser ?
 
@@ -43,9 +28,6 @@ Scala.js prend du code Scala standard et produit du JavaScript exécutable. Ce n
   <li class="fragment">Très utile pour des équipes <strong>déjà Scala</strong>.</li>
 </ul>
 
-Note:
-Script oral (1 min 15):
-Quand on fait déjà du Scala côté backend, Scala.js réduit la friction et garde la cohérence du domaine.
 ---
 ## Comment ça marche ?
 
@@ -58,46 +40,63 @@ import org.scalajs.dom
   dom.document.getElementById("app").textContent = "Hello from Scala.js"
 ```
 
-Note:
-Script oral (1 min 15):
-En dev: fastLinkJS pour itérer vite. En prod: fullLinkJS pour optimiser davantage.
 ---
 ## Pipeline de compilation Scala.js
 
-```text
-1) Code Scala (.scala)
-   ↓ compilation Scala.js
-2) IR Scala.js (.sjsir)
-   ↓ linker (fastLinkJS en dev)
-3) Bundle JavaScript (main.js)
-   ↓
-4) Exécution dans le navigateur
-```
+<table style="width:100%; border-collapse: collapse; font-size: 0.82em;">
+  <thead>
+    <tr>
+      <th style="text-align:left; padding:8px 12px;">Scala "normal" (JVM)</th>
+      <th style="text-align:left; padding:8px 12px; border-left: 3px solid #7f8fb3;">Scala.js</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="vertical-align:top; padding:8px 12px;">
+        <span class="fragment" data-fragment-index="1"><strong style="color:#4da3ff;">Action 1</strong>: écrire du Scala (<strong style="color:#57d18d;">.scala</strong>)</span><br/>
+        <span class="fragment" data-fragment-index="2"><strong style="color:#4da3ff;">Action 2</strong>: compiler avec <strong style="color:#57d18d;">scalac</strong></span><br/>
+        <span class="fragment" data-fragment-index="3"><strong style="color:#4da3ff;">Action 3</strong>: produire des <strong style="color:#57d18d;">.class</strong> (bytecode JVM)</span><br/>
+        <span class="fragment" data-fragment-index="4"><strong style="color:#4da3ff;">Action 4</strong>: exécuter sur la JVM (<strong style="color:#57d18d;">sbt run</strong>)</span>
+      </td>
+      <td style="vertical-align:top; padding:8px 12px; border-left: 3px solid #7f8fb3;">
+        <span class="fragment" data-fragment-index="1"><strong style="color:#ff6b6b;">Action 1</strong>: écrire du Scala (<strong style="color:#57d18d;">.scala</strong>)</span><br/>
+        <span class="fragment" data-fragment-index="2"><strong style="color:#ff6b6b;">Action 2</strong>: compiler vers IR Scala.js (<strong style="color:#57d18d;">.sjsir</strong>)</span><br/>
+        <span class="fragment" data-fragment-index="3"><strong style="color:#ff6b6b;">Action 3</strong>: linker avec <strong style="color:#57d18d;">fastLinkJS</strong></span><br/>
+        <span class="fragment" data-fragment-index="4"><strong style="color:#ff6b6b;">Action 4</strong>: générer <strong style="color:#57d18d;">main.js</strong> pour le navigateur</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-```bash
-sbt fastLinkJS
-# => target/scala-3.3.3/scalajs-reveal-demo-fastopt/main.js
-```
-
-Note:
-Script oral (50 sec):
-Point clé: Scala.js ne transpile pas ligne à ligne. Il passe par un IR intermédiaire, puis le linker construit le JavaScript final. fastLinkJS privilégie la vitesse pour le dev; fullLinkJS privilégie l'optimisation pour la prod.
 ---
 ## Démo 1: compteur
 <iframe class="demo-frame" src="/demo.html" title="Démo Scala.js compteur"></iframe>
 
-Note:
-Script oral (40 sec):
-Démo de base: état local, clic, rendu.
+--V--
+## Code compteur (rapide)
+
+```scala
+var count = 0
+counter.textContent = s"Compteur: $count"
+
+button.addEventListener("click", (_: dom.Event) => {
+  count += 1
+  counter.textContent = s"Compteur: $count"
+})
+```
+
+<ul>
+  <li class="fragment">`count` = état local en Scala.</li>
+  <li class="fragment">Le clic déclenche la mise à jour.</li>
+  <li class="fragment">Le DOM est mis à jour immédiatement.</li>
+</ul>
+
 ---
 ## Démo 2: ShelterDogs filtrable
 
 <iframe class="demo-frame" src="/shelter-demo.html" title="Démo filtres ShelterDogs"></iframe>
 
-Note:
-Script oral (1 min):
-On charge le CSV réel, puis on filtre en live avec des fonctions Scala typées.
----
+--V--
 ## Code
 
 ```scala
@@ -120,34 +119,7 @@ def filterDogs(dogs: List[Dog], f: ShelterFilters): List[Dog] =
 val dogs = DogCSVLoader.fromCsvContent(csvText)
 ```
 
-Note:
-Script oral (50 sec):
-Ici, c'est la version claire: loader + filtres métier.
---V--
-## Code (détail CSV)
 
-```scala
-private def parseCsvLine(line: String): Array[String] =
-  val out = scala.collection.mutable.ArrayBuffer.empty[String]
-  val current = new StringBuilder
-  var inQuotes = false
-  var i = 0
-  while i < line.length do
-    val ch = line.charAt(i)
-    if ch == '"' then
-      if inQuotes && i + 1 < line.length && line.charAt(i + 1) == '"' then
-        current.append('"'); i += 1
-      else inQuotes = !inQuotes
-    else if ch == ',' && !inQuotes then
-      out += current.toString; current.clear()
-    else current.append(ch)
-    i += 1
-  out += current.toString
-  out.toArray
-```
-
-Note:
-Slide verticale: parsing robuste des champs quotés.
 --V--
 ## Scala → JavaScript (filtre)
 
@@ -182,17 +154,12 @@ function filterDogs(dogs, f) {
 }
 ```
 
-Note:
-Slide verticale: ici on voit le coût JS "stringly-typed" et les gardes runtime supplémentaires. En Scala, Option et enums verrouillent déjà ces cas à la compilation.
 ---
 ## Démo 3: Adoption Engine
 
 <iframe class="demo-frame" src="/adoption-demo.html" title="Démo Adoption Engine"></iframe>
 
-Note:
-Script oral (1 min 10):
-Ici on démontre une décision métier: on choisit un chien, une règle d'évaluation, puis on calcule Approved/Rejected.
----
+--V--
 ## Code
 
 ```scala
@@ -215,9 +182,6 @@ val decision: AdoptionDecision = engine.decide(app, evaluator)
   <li class="fragment">Même logique réutilisable backend/frontend.</li>
 </ul>
 
-Note:
-Script oral (1 min):
-C'est le point clé de la démo: le front déclenche une vraie logique de domaine, pas juste du filtrage UI.
 --V--
 ## Code (évaluateurs)
 
@@ -233,8 +197,6 @@ class ChildFriendlyEvaluator extends ApplicationEvaluator[Dog]:
     dog.behaviour.likesChildren.getOrElse(false)
 ```
 
-Note:
-Slide verticale: règles métier séparées, simples à tester.
 --V--
 ## Scala → JavaScript (adoption)
 
@@ -271,8 +233,6 @@ if (decision && decision.message) {
 }
 ```
 
-Note:
-Slide verticale: avec Scala, le type union `Approved | Rejected` impose un traitement exhaustif; en JS, on sécurise au runtime.
 ---
 ## Limites + conclusion
 
@@ -284,12 +244,68 @@ Slide verticale: avec Scala, le type union `Approved | Rejected` impose un trait
 
 > <span class="fragment">Scala.js n'essaie pas de remplacer JavaScript partout : il donne une option solide aux équipes Scala.</span>
 
-Note:
-Script oral (50 sec):
-Scala.js est surtout un choix stratégique pour les équipes full-stack Scala.
 --V--
+## Limite technique: dépendances npm
+
+<ul>
+  <li class="fragment">Avec JavaScript, beaucoup de libs npm marchent “direct”.</li>
+  <li class="fragment">Avec Scala.js, certaines libs npm demandent une couche d’adaptation.</li>
+  <li class="fragment">Cette adaptation ajoute du code à maintenir.</li>
+  <li class="fragment">Si la lib npm change, il faut parfois ajuster cette couche manuellement.</li>
+</ul>
+
+--V--
+## Exemple de “pont” Scala.js → lib JS
+
+<div style="font-size: 0.8em;">
+
+```scala
+@js.native
+@JSImport("chart.js/auto", JSImport.Default)
+object ChartJS extends js.Object
+
+def drawChart(canvasId: String, labels: List[String], values: List[Double]): Unit = {
+  // appel de la lib JS via ce pont
+}
+```
+
+<ul>
+  <li class="fragment">Le “pont” relie ton code Scala à une API JavaScript.</li>
+  <li class="fragment">C'est utile, mais c'est du code en plus à maintenir.</li>
+  <li class="fragment">Si l'API npm change, ce pont peut devoir être adapté.</li>
+</ul>
+
+--V--
+## Démo 4: pont npm `is-thirteen`
+
+<iframe class="demo-frame" src="/is13-demo.html" title="Démo is-thirteen"></iframe>
+
+--V--
+## Exemple séparé: lib npm `is-thirteen`
+
+```scala
+@js.native
+trait IsThirteenResult extends js.Object:
+  def thirteen(): Boolean = js.native
+
+@js.native
+@JSGlobal("isThirteen")
+object IsThirteenBridge extends js.Object:
+  def apply(value: String): IsThirteenResult = js.native
+  def apply(value: Double): IsThirteenResult = js.native
+
+def checkIsThirteen(raw: String): Boolean =
+  raw.trim.toDoubleOption match
+    case Some(n) => IsThirteenBridge(n).thirteen()
+    case None    => IsThirteenBridge(raw.trim).thirteen()
+```
+---
 ## Bonus: questions / ressources
 
 - Scala.js docs: https://www.scala-js.org/
 - Reveal.js docs: https://revealjs.com/
 - Commande démo: `sbt fastLinkJS`
+---
+# Avez-vous des questions ?
+
+Merci.

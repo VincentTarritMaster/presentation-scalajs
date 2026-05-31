@@ -2,6 +2,7 @@ package demo
 
 import demo.game.GameDemo
 import demo.increment.IncrementDemo
+import demo.interop.IsThirteenDemo
 import demo.shelter.ShelterDemo
 
 object Main {
@@ -9,5 +10,6 @@ object Main {
     IncrementDemo.mount()
     GameDemo.mount()
     ShelterDemo.mount()
+    IsThirteenDemo.mount()
   }
 }

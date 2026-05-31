@@ -103,10 +103,6 @@ object ShelterDemo {
     val cards = document.createElement("div")
     cards.setAttribute("style", "display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap:10px; flex:1;")
 
-    val nextButton = document.createElement("button").asInstanceOf[dom.html.Button]
-    nextButton.textContent = "→"
-    nextButton.setAttribute("style", "height:42px; min-width:42px; border:0; border-radius:999px; background:#1d5eff; color:white; font-size:22px; cursor:pointer;")
-
     var dogs: List[Dog] = Nil
     var state = ShelterState(ShelterFilters(None, None, None), 0)
 
@@ -147,9 +143,6 @@ object ShelterDemo {
           cards.appendChild(card)
         }
       }
-
-      nextButton.disabled = total <= 3
-      nextButton.style.opacity = if total <= 3 then "0.5" else "1"
     }
 
     neuteredSelect.addEventListener("change", (_: dom.Event) => {
@@ -172,14 +165,7 @@ object ShelterDemo {
       render()
     })
 
-    nextButton.addEventListener("click", (_: dom.Event) => {
-      val total = filterDogs(dogs, state.filters).size
-      if (total > 0) state = state.copy(offset = (state.offset + 1) % total)
-      render()
-    })
-
     carousel.appendChild(cards)
-    carousel.appendChild(nextButton)
     root.appendChild(controls)
     root.appendChild(status)
     root.appendChild(carousel)
