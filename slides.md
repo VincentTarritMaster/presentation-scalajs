@@ -254,7 +254,7 @@ if (decision && decision.message) {
   <li class="fragment">Si la lib npm change, il faut parfois ajuster cette couche manuellement.</li>
 </ul>
 
---V--
+---
 ## Exemple de “pont” Scala.js → lib JS
 
 <div style="font-size: 0.8em;">
@@ -304,7 +304,6 @@ def checkIsThirteen(raw: String): Boolean =
 
 - Scala.js docs: https://www.scala-js.org/
 - Reveal.js docs: https://revealjs.com/
-- Commande démo: `sbt fastLinkJS`
 ---
 # Avez-vous des questions ?
 
