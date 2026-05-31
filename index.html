@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scala.js : écrire du front-end en Scala</title>
+    <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
+    <link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="/node_modules/reveal.js/plugin/highlight/monokai.css" />
+    <style>
+      :root {
+        --bg-soft: #121826;
+        --fg-soft: #d8e0f0;
+        --accent: #59c2ff;
+      }
+      .reveal {
+        background: radial-gradient(circle at 10% 10%, #1d2a44, #0d111b 60%);
+      }
+      .reveal h1,
+      .reveal h2,
+      .reveal h3 {
+        text-transform: none;
+        letter-spacing: 0.01em;
+      }
+      .reveal section {
+        text-align: left;
+      }
+      .reveal p,
+      .reveal li {
+        color: var(--fg-soft);
+      }
+      .reveal strong,
+      .accent {
+        color: var(--accent);
+      }
+      .demo-frame {
+        width: 100%;
+        height: 520px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+      .mini {
+        font-size: 0.65em;
+        color: #aab8d6;
+      }
+      .reveal pre code {
+        max-height: 420px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          data-markdown="slides.md"
+          data-separator="^---$"
+          data-separator-vertical="^--V--$"
+          data-separator-notes="^Note:"
+        ></section>
+      </div>
+    </div>
+
+    <script type="module">
+      import Reveal from '/node_modules/reveal.js/dist/reveal.esm.js';
+      import Markdown from '/node_modules/reveal.js/plugin/markdown/markdown.esm.js';
+      import Highlight from '/node_modules/reveal.js/plugin/highlight/highlight.esm.js';
+      import Notes from '/node_modules/reveal.js/plugin/notes/notes.esm.js';
+
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        transition: 'slide',
+        plugins: [Markdown, Highlight, Notes]
+      });
+    </script>
+  </body>
+</html>

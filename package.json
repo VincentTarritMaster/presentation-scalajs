@@ -1,0 +1,17 @@
+{
+  "name": "scalajs-reveal-demo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build-slides": "vite build",
+    "preview": "vite preview",
+    "start:all": "sbt fastLinkJS && (vite & sleep 2 && osascript -e 'tell application \"Arc\" to activate' -e 'tell application \"Arc\" to make new window' -e 'tell application \"Arc\" to tell front window to make new tab with properties {URL:\"http://localhost:5173/\"}' && wait)"
+  },
+  "dependencies": {
+    "reveal.js": "5.1.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.19"
+  }
+}
