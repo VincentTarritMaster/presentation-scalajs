@@ -1,6 +1,6 @@
-# Mini-projet: présentation Reveal.js + démo Scala.js
+# Mini-projet: présentation Reveal.js + démos Scala.js
 
-Projet de présentation (6 slides principales) pour une session de 10 minutes sur Scala.js, avec une mini app démo exécutable dans le navigateur.
+Présentation de 10 minutes sur Scala.js avec Reveal.js et 3 démos exécutables dans le navigateur.
 
 ## Prérequis
 
@@ -11,13 +11,17 @@ Projet de présentation (6 slides principales) pour une session de 10 minutes su
 
 ## Structure
 
-- `package.json`: dépendances et scripts front (Vite + Reveal.js)
-- `index.html`: entrée des slides Reveal.js
-- `slides.md`: contenu des slides (inclut notes speaker)
-- `demo.html`: page de démo Scala.js
-- `src/main/scala/demo/Main.scala`: logique Scala.js (DOM + compteur)
-- `build.sbt`: config Scala.js
-- `project/plugins.sbt`: plugin sbt Scala.js
+- `package.json`: scripts front (Vite)
+- `index.html`: entrée Reveal.js
+- `slides.md`: contenu des slides + notes speaker
+- `demo.html`: démo 1 (compteur)
+- `shelter-demo.html`: démo 2 (filtres ShelterDogs)
+- `adoption-demo.html`: démo 3 (Adoption Engine)
+- `src/main/scala/demo/Main.scala`: point d’entrée Scala.js
+- `src/main/scala/demo/increment/`: code démo compteur
+- `src/main/scala/demo/game/`: code démo state typé
+- `src/main/scala/demo/shelter/`: code démos ShelterDogs (loader, model, adoption)
+- `build.sbt`, `project/plugins.sbt`: config sbt + Scala.js
 
 ## Installation
 
@@ -32,33 +36,23 @@ npm install
 sbt fastLinkJS
 ```
 
-Le JS généré est attendu ici:
-`target/scala-3.3.3/scalajs-reveal-demo-fastopt/main.js`
-
-## Lancer les slides
+## Lancer la présentation
 
 ```bash
-npm run dev
+npm run start:all
 ```
 
 Puis ouvrir:
-- `http://localhost:5173/` pour la présentation
-- `http://localhost:5173/demo.html` pour la démo seule
+- `http://localhost:5173/` (la présentation)
 
-## Tester la démo
-
-1. Vérifier que `sbt fastLinkJS` a été exécuté.
-2. Ouvrir `http://localhost:5173/demo.html`.
-3. Cliquer sur **Incrémenter** et vérifier que le compteur augmente.
-
-## Architecture (court)
-
-- Reveal.js lit `slides.md` depuis `index.html`.
-- La slide "Démo live" intègre `demo.html` via iframe.
-- `demo.html` charge le fichier JavaScript généré par Scala.js.
-- La logique applicative est dans `Main.scala`, compilée via `sbt fastLinkJS`.
+Les iframes se chargent automatiquement dans les slides:
+- `/demo.html`
+- `/shelter-demo.html`
+- `/adoption-demo.html`
 
 ## Modifier le contenu
 
-- Slides: éditer `slides.md`
-- Démo Scala.js: éditer `src/main/scala/demo/Main.scala`, puis relancer `sbt fastLinkJS`
+- Slides: `slides.md`
+- Démo 1 compteur: `src/main/scala/demo/increment/IncrementDemo.scala`
+- Démo 2 filtres + Démo 3 adoption: `src/main/scala/demo/shelter/ShelterDemo.scala`
+- Modèles/loader ShelterDogs: `src/main/scala/demo/shelter/src/main/scala/`
