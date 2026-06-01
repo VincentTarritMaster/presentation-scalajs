@@ -17,7 +17,7 @@ object ShelterDemo {
   }
 
   private def loadDogs(onLoaded: List[Dog] => Unit): Unit =
-    dom.fetch("/data/07-ShelterDogs.csv")
+    dom.fetch("data/07-ShelterDogs.csv")
       .toFuture
       .flatMap(_.text().toFuture)
       .map(DogCSVLoader.fromCsvContent)
