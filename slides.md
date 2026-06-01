@@ -7,7 +7,7 @@
 # Du JavaScript sans JavaScript.
 
 ---
-# Scala.js.
+# Scala.js
 
 ---
 ## C'est quoi Scala.js ?
@@ -15,7 +15,7 @@
 <ul>
   <li class="fragment">Un compilateur <strong>Scala vers JavaScript</strong>.</li>
   <li class="fragment">Le code peut tourner dans le <strong>navigateur</strong> ou dans <strong>Node.js</strong>.</li>
-  <li class="fragment">Idée clé: conserver le <strong>typage</strong> et l'écosystème Scala côté front.</li>
+  <li class="fragment">Idée clé: conserver le <strong>typage</strong> et l'écosystème Scala côté JS.</li>
 </ul>
 
 ---
@@ -234,7 +234,7 @@ if (decision && decision.message) {
 ```
 
 ---
-## Limites + conclusion
+## Limites
 
 <ul>
   <li class="fragment">Courbe d'apprentissage et tooling.</li>
@@ -245,7 +245,7 @@ if (decision && decision.message) {
 > <span class="fragment">Scala.js n'essaie pas de remplacer JavaScript partout : il donne une option solide aux équipes Scala.</span>
 
 --V--
-## Limite technique: dépendances npm
+## Dépendances npm
 
 <ul>
   <li class="fragment">Avec JavaScript, beaucoup de libs npm marchent “direct”.</li>
@@ -270,18 +270,18 @@ def drawChart(canvasId: String, labels: List[String], values: List[Double]): Uni
 ```
 
 <ul>
-  <li class="fragment">Le “pont” relie ton code Scala à une API JavaScript.</li>
+  <li class="fragment">Le “pont” relie le code Scala à une API JavaScript.</li>
   <li class="fragment">C'est utile, mais c'est du code en plus à maintenir.</li>
   <li class="fragment">Si l'API npm change, ce pont peut devoir être adapté.</li>
 </ul>
 
 --V--
-## Démo 4: pont npm `is-thirteen`
+## Démo 4: pont npm
 
 <iframe class="demo-frame" src="/is13-demo.html" title="Démo is-thirteen"></iframe>
 
 --V--
-## Exemple séparé: lib npm `is-thirteen`
+## lib npm `is-thirteen`
 
 ```scala
 @js.native
