@@ -300,7 +300,7 @@ def checkIsThirteen(raw: String): Boolean =
     case None    => IsThirteenBridge(raw.trim).thirteen()
 ```
 ---
-## Bonus: questions / ressources
+## Resources
 
 - Scala.js docs: https://www.scala-js.org/
 - Reveal.js docs: https://revealjs.com/
