@@ -22,6 +22,7 @@ Présentation de 10 minutes sur Scala.js avec Reveal.js et 3 démos exécutables
 - `src/main/scala/demo/game/`: code démo state typé
 - `src/main/scala/demo/shelter/`: code démos ShelterDogs (loader, model, adoption)
 - `build.sbt`, `project/plugins.sbt`: config sbt + Scala.js
+- `.github/workflows/deploy-pages.yml`: pipeline GitHub Pages
 
 ## Installation
 
@@ -46,9 +47,25 @@ Puis ouvrir:
 - `http://localhost:5173/` (la présentation)
 
 Les iframes se chargent automatiquement dans les slides:
-- `/demo.html`
-- `/shelter-demo.html`
-- `/adoption-demo.html`
+- `demo.html`
+- `shelter-demo.html`
+- `adoption-demo.html`
+
+## Publication GitHub Pages
+
+Le workflow publie automatiquement sur GitHub Pages à chaque push sur `main`.
+
+1. Dans GitHub:
+   - `Settings` → `Pages`
+   - `Source`: **GitHub Actions**
+2. Push sur `main`.
+3. Le workflow `Deploy to GitHub Pages` construit et publie le dossier `dist/`.
+
+Build local équivalent:
+
+```bash
+npm run build:pages
+```
 
 ## Modifier le contenu
 

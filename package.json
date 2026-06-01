@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build-slides": "vite build",
+    "build:pages": "sbt fastLinkJS && vite build && mkdir -p dist/target/scala-3.3.3/scalajs-reveal-demo-fastopt && cp target/scala-3.3.3/scalajs-reveal-demo-fastopt/main.js* dist/target/scala-3.3.3/scalajs-reveal-demo-fastopt/ && cp slides.md demo.html shelter-demo.html adoption-demo.html is13-demo.html dist/",
     "preview": "vite preview",
     "start:all": "sbt fastLinkJS && (vite & sleep 2 && osascript -e 'tell application \"Arc\" to activate' -e 'tell application \"Arc\" to make new window' -e 'tell application \"Arc\" to tell front window to make new tab with properties {URL:\"http://localhost:5173/\"}' && wait)"
   },

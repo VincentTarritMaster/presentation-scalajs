@@ -70,7 +70,7 @@ import org.scalajs.dom
 
 ---
 ## Démo 1: compteur
-<iframe class="demo-frame" src="/demo.html" title="Démo Scala.js compteur"></iframe>
+<iframe class="demo-frame" src="demo.html" title="Démo Scala.js compteur"></iframe>
 
 --V--
 ## Code compteur (rapide)
@@ -94,7 +94,7 @@ button.addEventListener("click", (_: dom.Event) => {
 ---
 ## Démo 2: ShelterDogs filtrable
 
-<iframe class="demo-frame" src="/shelter-demo.html" title="Démo filtres ShelterDogs"></iframe>
+<iframe class="demo-frame" src="shelter-demo.html" title="Démo filtres ShelterDogs"></iframe>
 
 --V--
 ## Code
@@ -157,7 +157,7 @@ function filterDogs(dogs, f) {
 ---
 ## Démo 3: Adoption Engine
 
-<iframe class="demo-frame" src="/adoption-demo.html" title="Démo Adoption Engine"></iframe>
+<iframe class="demo-frame" src="adoption-demo.html" title="Démo Adoption Engine"></iframe>
 
 --V--
 ## Code
@@ -278,7 +278,7 @@ def drawChart(canvasId: String, labels: List[String], values: List[Double]): Uni
 --V--
 ## Démo 4: pont npm
 
-<iframe class="demo-frame" src="/is13-demo.html" title="Démo is-thirteen"></iframe>
+<iframe class="demo-frame" src="is13-demo.html" title="Démo is-thirteen"></iframe>
 
 --V--
 ## lib npm `is-thirteen`
